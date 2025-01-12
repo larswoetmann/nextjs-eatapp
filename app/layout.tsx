@@ -7,7 +7,8 @@ import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
+import { housesList, spreadSheedId } from '@/app/lib/data';
+import { cookies } from 'next/headers'
 
 export const metadata: Metadata = {
   title: {
@@ -27,11 +28,21 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = await cookies();
+  const house = cookieStore.get('house')?.value;
+  let houseLabel = "";
+  let link = "https://docs.google.com/spreadsheets/d/" + spreadSheedId + "/edit";
+  if (house != null && house != "") {
+    const houseNumber = parseInt(house.substring(1));
+    houseLabel = "Pilotvej " + houseNumber;
+    link = "https://docs.google.com/spreadsheets/d/" + spreadSheedId + "/edit?gid=" + housesList().find(h => h[0] == houseNumber)?.[1];
+  }
+
   return (
     <html suppressHydrationWarning lang="en">
       <head />
@@ -43,19 +54,13 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            <Navbar />
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+            <main className="container mx-auto max-w-7xl pt-2 px-2 flex-grow">
               {children}
             </main>
-            <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                title="nextui.org homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">NextUI</p>
+            <footer className="w-full flex items-center justify-between p-2">
+              <span>{houseLabel}</span>
+              <Link isExternal className="flex items-center gap-1 text-current" href={link}>
+                <span>Link til Mad ark</span>
               </Link>
             </footer>
           </div>
