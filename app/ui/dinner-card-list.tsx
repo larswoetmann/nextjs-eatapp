@@ -1,7 +1,7 @@
 import { getCachedHouseAndCookSheetRows, DinnerEvent } from '@/app/lib/googlesheets';
 import { DinnerCard } from "@/components/dinner-card";
 import Link from 'next/link';
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 
 function getWeekNumber(d: number): number {
   var date = new Date(d);

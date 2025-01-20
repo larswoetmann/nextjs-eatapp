@@ -9,4 +9,4 @@ export function housesList(): HouseSheetId[] {
   return map;
 }
 
-export const spreadSheedId = '1xDN0cD_-LM6DRp7qqW9vNfHd6kxsj9W_BjZD2aPFTPY';
+export const spreadSheedId = '1JHNCK4SVovbEeGF4n6FO0_dc3j85hVQGD1c3gA69Ub8';

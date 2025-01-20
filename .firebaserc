@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "nextjs-eating",
+    "nextjs-eating": "nextjs-eating"
+  },
+  "targets": {},
+  "etags": {}
+}

@@ -1,8 +1,8 @@
 import { DinnerEvent } from '@/app/lib/googlesheets';
 import Link from 'next/link';
 
-import { Button } from "@nextui-org/button";
-import { Card, CardBody, CardFooter } from "@nextui-org/card";
+import { Button } from "@heroui/button";
+import { Card, CardBody, CardFooter } from "@heroui/card";
 
 export const DinnerCard = ({event, house}: {event: DinnerEvent, house: string} ) => 
   <Card>
